@@ -8,12 +8,12 @@ class TopWordsController < ApplicationController
     @top_words = TopWord.all
   end
 
-  def show
-    @top_word = TopWord.find(params[:id])
+  def top_100
+    @top_words = TopWord.limit(100)
   end
 
-  def new
-    @top_word = TopWord.new
+  def show
+    @top_word = TopWord.find(params[:id])
   end
 
   def edit

@@ -22,4 +22,8 @@ class TopWord < ActiveRecord::Base
 			rake_data.save
 		end
   end
+
+  def self.limit_100
+  	TopWord.limit(100)
+  end
 end

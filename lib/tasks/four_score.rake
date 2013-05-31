@@ -16,10 +16,11 @@ task :four_score => :environment do
 		sorted_hash.reverse!
 		
 		sorted_hash.each do |key, value|
-			puts "#{key}: #{value}"
 			rake_data = TopWord.new(word: key, count: value)
 			rake_data.save
 		end
+
+		TopWord.limit(100).each { |x| p x }
 	end
 
 	top_100_words(four_score)
