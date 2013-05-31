@@ -1,6 +1,6 @@
 <h1 class="navbar-inner" style="width:900px; height:50px; padding-top:10px; margin-bottom:10px">Gettysburg Address Data</h1>
 	<div style="margin-bottom:10px">
-  <td><%= link_to 'Raw Data', raw_data_path, class: "btn btn-large btn-primary"  %></td>
+  <td><%= link_to 'Raw Data', raw_data_path, method: 'post', class: "btn btn-large btn-primary"  %></td>
   <td><%= link_to 'Stored Data', store_data_path, class: "btn btn-large btn-primary"  %></td>
   <td><%= link_to 'Top 100 List', top_100_path, class: "btn btn-large btn-primary"  %></td>
   <td><%= link_to 'Reset Database', destroy_path, class: "btn btn-large btn-primary"  %></td>
@@ -8,7 +8,6 @@
   <table style="width:942px;">
     <tr class="navbar-inner" style="text-align:left">
       <th style="padding-left:40px">Top Words</th>
-      <th>Word</th>
       <th>Count</th>
       <th></th>
       <th></th>

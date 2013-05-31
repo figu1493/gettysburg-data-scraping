@@ -1,10 +1,12 @@
+require 'open-uri'
+require 'Nokogiri'
+
 class TopWord < ActiveRecord::Base
   attr_accessible :count, :word
 
   validates :word, uniqueness: true
 
   def self.raw_data
-  	require 'open-uri'
 
 		url = "http://rmc.library.cornell.edu/gettysburg/good_cause/transcript.htm"
 		doc = Nokogiri::HTML(open(url))
@@ -13,7 +15,6 @@ class TopWord < ActiveRecord::Base
 	end
 
   def self.four_score
-  	require 'open-uri'
 
 		url = "http://rmc.library.cornell.edu/gettysburg/good_cause/transcript.htm"
 		doc = Nokogiri::HTML(open(url))

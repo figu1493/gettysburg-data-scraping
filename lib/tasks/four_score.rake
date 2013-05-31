@@ -9,6 +9,8 @@ task :four_score => :environment do
 	four_score = doc.at_css("blockquote blockquote p").text 
 
 	# There are 155 Unique words in the Gettysburg Address
+	# This function splits the text and limits the Data returned
+	# To the top 100 unique word results 
 	def top_100_words(x)
 		array = x.split(" ")
 		nested_hash = array.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
