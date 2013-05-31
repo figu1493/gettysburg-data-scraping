@@ -1,0 +1,24 @@
+<h1 class="navbar-inner" style="width:900px; height:50px; padding-top:10px; margin-bottom:10px">Gettysburg Address Data</h1>
+	<div style="margin-bottom:10px">
+  <td><%= link_to 'Fetch Data Now!', top_words_path, class: "btn btn-large btn-primary"  %></td>
+	</div>
+  <table style="width:942px;">
+    <tr class="navbar-inner" style="text-align:left">
+      <th style="padding-left:40px">Top Words</th>
+      <th>Word</th>
+      <th>Count</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @top_words.each do |top_word| %>
+    <tr class="navbar-inner">
+      <td style="padding-left:40px"><%= top_word.word %></td>
+      <td><%= top_word.count %></td>
+      <td><%= link_to 'Show', top_word, class: "btn btn-small btn-primary" %></td>
+      <td><%= link_to 'Edit', edit_top_word_path(top_word), class: "btn btn-small btn-primary" %></td>
+      <td><%= link_to 'Destroy', top_word, class: "btn btn-small btn-primary", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>

@@ -1,0 +1,29 @@
+<%= form_for(@top_word) do |f| %>
+  <% if @top_word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@top_word.errors.count, "error") %> prohibited this top_word from being saved:</h2>
+
+      <ul>
+      <% @top_word.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="navbar-inner">
+    <%= f.label :word %><br />
+    <%= f.text_field :word %>
+  </div>
+  <br />
+
+  <div class="navbar-inner">
+    <%= f.label :count %><br />
+    <%= f.text_field :count %>
+  </div>
+  <br />
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

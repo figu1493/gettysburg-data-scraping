@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p class="navbar-inner">
+  <b>Word:</b>
+  <%= @top_word.word %>
+</p>
+
+<p class="navbar-inner">
+  <b>Count:</b>
+  <%= @top_word.count %>
+</p>
+
+<%= link_to 'Edit', edit_top_word_path(@top_word), class: "btn btn-small btn-primary" %> |
+<%= link_to 'Back', top_words_path, class: "btn btn-small btn-primary" %>
