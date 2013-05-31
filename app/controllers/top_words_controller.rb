@@ -3,7 +3,7 @@ class TopWordsController < ApplicationController
     @top_words = TopWord.all
   end
 
-  def index
+  def store_data
     TopWord.four_score
     @top_words = TopWord.all
   end
