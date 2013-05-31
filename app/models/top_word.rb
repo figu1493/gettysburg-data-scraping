@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'Nokogiri'
+require 'nokogiri'
 
 class TopWord < ActiveRecord::Base
   attr_accessible :count, :word
