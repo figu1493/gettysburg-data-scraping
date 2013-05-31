@@ -7,6 +7,7 @@ FourScore::Application.routes.draw do
   match '/top_words',    to: 'top_words#index'
   match '/destroy',      to: 'top_words#destroy_all'
   match '/top_100',      to: 'top_words#top_100'
+  match '/raw_data',     to: 'top_words#raw_data'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

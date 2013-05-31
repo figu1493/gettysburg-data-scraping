@@ -8,6 +8,10 @@ class TopWordsController < ApplicationController
     @top_words = TopWord.all
   end
 
+  def raw_data
+    TopWord.raw_data
+  end
+
   def top_100
     @top_words = TopWord.limit(100)
   end

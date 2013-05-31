@@ -3,6 +3,15 @@ class TopWord < ActiveRecord::Base
 
   validates :word, uniqueness: true
 
+  def self.raw_data
+  	require 'open-uri'
+
+		url = "http://rmc.library.cornell.edu/gettysburg/good_cause/transcript.htm"
+		doc = Nokogiri::HTML(open(url))
+
+		@four_score = doc.at_css("blockquote blockquote p").text 
+	end
+
   def self.four_score
   	require 'open-uri'
 
@@ -21,9 +30,5 @@ class TopWord < ActiveRecord::Base
 			rake_data = TopWord.new(word: key, count: value)
 			rake_data.save
 		end
-  end
-
-  def self.limit_100
-  	TopWord.limit(100)
   end
 end
