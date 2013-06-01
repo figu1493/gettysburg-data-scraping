@@ -4,12 +4,14 @@ gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.1'
 gem "nokogiri", '1.5.9'
 
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 group :development, :test do
-	gem 'sqlite3', '1.3.7'
+	gem 'sqlite3', '1.3.5'
+  gem 'rspec-rails', '2.11.0'
+end
+
+group :test do
+	gem 'capybara', '1.1.2'
+	gem 'factory_girl_rails', '4.1.0'
 end
 
 group :assets do
