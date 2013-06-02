@@ -27,7 +27,7 @@ class TopWord < ActiveRecord::Base
 		sorted_hash.reverse!
 		
 		sorted_hash.each do |key, value|
-			puts "#{key}: #{value}"
+			#puts "#{key}: #{value}"
 			rake_data = TopWord.new(word: key, count: value)
 			rake_data.save
 		end

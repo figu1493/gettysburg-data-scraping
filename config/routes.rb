@@ -8,5 +8,6 @@ FourScore::Application.routes.draw do
   match '/destroy',      to: 'top_words#destroy_all'
   match '/top_100',      to: 'top_words#top_100'
   match '/raw_data',     to: 'top_words#raw_data'
-  
+
+  match '/home',    		 to: 'top_words#destroy'
 end
