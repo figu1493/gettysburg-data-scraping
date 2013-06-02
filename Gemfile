@@ -12,6 +12,7 @@ end
 group :test do
 	gem 'capybara', '1.1.2'
 	gem 'factory_girl_rails', '4.1.0'
+	gem "simplecov-rcov", "~> 0.2.3"
 end
 
 group :assets do
@@ -21,6 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
+gem "awesome_print", "~> 1.1.0"
 
 group :production do
   gem 'pg'

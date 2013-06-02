@@ -9,7 +9,7 @@ class TopWordsController < ApplicationController
   end
 
   def raw_data
-    TopWord.raw_data
+    @top_words = TopWord.raw_data
   end
 
   def top_100
@@ -20,9 +20,9 @@ class TopWordsController < ApplicationController
     @top_word = TopWord.find(params[:id])
   end
 
-  def edit
+ def edit
     @top_word = TopWord.find(params[:id])
-  end
+  end 
 
   def create
     @top_word = TopWord.new(params[:TopWord])

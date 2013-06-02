@@ -23,49 +23,79 @@ describe TopWordsController do
 	end
 
 	context "#raw_data" do
-		it "test_here" do
+		it "should render the Gettysburg address raw text" do
 			get :raw_data
 
-			print response.body
-			print response
+			assigns[:top_words].split(" ").first.should == "\"Fourscore"
+			assigns[:top_words].split(" ").first.should == "earth.\""
 		end
 	end
 
 	context "#top_100" do
 		it "should limit results to the top 100 responses" do
 			200.times { |x| FactoryGirl.create :top_word, word: "word #{x}" }
-			
-			p response.body
-			p response
+		
+			get :top_100 
+
+			assigns[:top_words].count.should == 100
+			assigns[:top_words].last.word.should == "word 99"
 		end
 	end
 
 	context "#show" do
 		it "test_here" do
-			pending
-			get :show
+			word = FactoryGirl.create :top_word	
+
+			get :show, id: word.id
+
+			response.should be_success
 		end
 	end
 
 	context "#edit" do
 		it "test_here" do
-			pending
-			get :edit
+			word = FactoryGirl.create :top_word
+
+			get :edit, id: word.id
+
+			response.should be_success
 		end
 	end
 
 	context "#create" do
-		it "should creat a new TopWord object" do
-			post :create
+		it "should create a new TopWord object" do
+			post :create, TopWord: { word: "Awesome", count: 100}
 
 			TopWord.all.count.should == 1
+			TopWord.last.word.should == "Awesome"
+		end
+
+		it "should fail to create a new TopWord object" do
+			TopWord.any_instance.stub(:save).and_return(false)
+
+			post :create, TopWord: { word: "this", count: 1 }
+
+			TopWord.all.count.should == 0
 		end
 	end
 
 	context "#update" do
-		it "test_here" do
-			pending
-			get :update
+		it "should update TopWord attributes" do
+			word = FactoryGirl.create :top_word
+		
+			post :update, id: word.id, TopWord: { word: "Le-French", count: 15 }
+
+			TopWord.last.reload.word.should == "Le-French"
+		end
+
+		it "should fail to update TopWord attributes and render edit" do
+			word = FactoryGirl.create :top_word
+ 
+			TopWord.any_instance.stub(:update_attributes).and_return(false)
+		
+			post :update, id: word.id 
+
+			response.should render_template('edit')
 		end
 	end
 
