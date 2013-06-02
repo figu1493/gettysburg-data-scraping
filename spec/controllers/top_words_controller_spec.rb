@@ -14,7 +14,7 @@ describe TopWordsController do
 	end
 
 	context "#store_data" do
-		it "store_data should scrape and store the data in the database" do
+		it "should scrape and store the data in the database" do
 			get :store_data
 
 			TopWord.last.id.should == 155
@@ -27,7 +27,7 @@ describe TopWordsController do
 			get :raw_data
 
 			assigns[:top_words].split(" ").first.should == "\"Fourscore"
-			assigns[:top_words].split(" ").first.should == "earth.\""
+			assigns[:top_words].split(" ").last.should == "earth.\""
 		end
 	end
 
@@ -43,7 +43,7 @@ describe TopWordsController do
 	end
 
 	context "#show" do
-		it "test_here" do
+		it "should show Word that is found by id params" do
 			word = FactoryGirl.create :top_word	
 
 			get :show, id: word.id
@@ -53,7 +53,7 @@ describe TopWordsController do
 	end
 
 	context "#edit" do
-		it "test_here" do
+		it "should find Word by id params" do
 			word = FactoryGirl.create :top_word
 
 			get :edit, id: word.id
