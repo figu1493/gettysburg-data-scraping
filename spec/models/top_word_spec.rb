@@ -6,7 +6,7 @@ describe TopWord do
   it { should respond_to(:count) }
 
 	context "#self.raw_data" do
-		it "should scrape the raw data from the gettysburg address website" do
+		it "should scrape the raw data from the gettysburg address" do
 			TopWord.raw_data.split(" ").first.should == "\"Fourscore"
 			TopWord.raw_data.split(" ").last.should == "earth.\""
 		end
