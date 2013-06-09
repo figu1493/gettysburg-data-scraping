@@ -55,11 +55,11 @@ class TopWordsController < ApplicationController
   def destroy
     @top_word = TopWord.find(params[:id])
     @top_word.destroy
-    redirect_to home_path
+    redirect_to root_path
   end
 
   def destroy_all
     TopWord.destroy_all
-    redirect_to home_path
+    redirect_to root_path
   end
 end

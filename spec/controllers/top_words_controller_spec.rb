@@ -3,13 +3,14 @@ require 'spec_helper'
 describe TopWordsController do
 	
 	context "#home" do
-		it "should fetch all TopWords in the database" do
+		it "should fetch all TopWords in the database and render root_path" do
 			word = FactoryGirl.create :top_word, word: "Unique"
 
 			get :home
 
 			TopWord.all.count.should == 1
-			TopWord.last.word.should == "Unique"
+			assigns[:top_words].last.word.should == 'Unique'
+			response.should render_template root_path
 		end
 	end
 
@@ -19,6 +20,7 @@ describe TopWordsController do
 
 			TopWord.last.id.should == 155
 			TopWord.all.count.should == 155
+			response.should render_template store_data_path
 		end
 	end
 
@@ -28,6 +30,7 @@ describe TopWordsController do
 
 			assigns[:top_words].split(" ").first.should == "\"Fourscore"
 			assigns[:top_words].split(" ").last.should == "earth.\""
+			response.should render_template raw_data_path
 		end
 	end
 
@@ -39,6 +42,7 @@ describe TopWordsController do
 
 			assigns[:top_words].count.should == 100
 			assigns[:top_words].last.word.should == "word 99"
+			response.should render_template top_100_path
 		end
 	end
 
@@ -49,6 +53,7 @@ describe TopWordsController do
 			get :show, id: word.id
 
 			response.should be_success
+			response.should render_template('show')
 		end
 	end
 
@@ -59,6 +64,7 @@ describe TopWordsController do
 			get :edit, id: word.id
 
 			response.should be_success
+			response.should render_template('edit')
 		end
 	end
 
@@ -108,6 +114,7 @@ describe TopWordsController do
 
 			TopWord.all.count.should == 1
 			TopWord.last.word.should == "word_2"
+			response.should redirect_to root_path
 		end
 	end
 	context "#destroy_all" do
@@ -117,6 +124,7 @@ describe TopWordsController do
 			put :destroy_all
 
 			TopWord.all.count.should == 0
+			response.should redirect_to root_path
 		end
 	end
 end
