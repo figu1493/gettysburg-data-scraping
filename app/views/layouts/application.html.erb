@@ -9,16 +9,18 @@
 	
 
 <body class="container">
-	<div class="container">
-		<div class="navbar-inner">
+	<header class="navbar navbar-fixed-top">
+  	<div class="navbar-inner">
+  		<ul class="nav pull-right">
 			<% if user_signed_in? %>
-    		Signed in as <%= current_user.email %>. Not you?
+    		"Signed in as <%= current_user.email %>. Not you?"
     		<%= link_to "Sign out", destroy_user_session_path, class: "btn btn-small btn-primary", :method => :delete %>
   		<% else %>
     		<%= link_to "Sign up", new_user_registration_path, class: "btn btn-small btn-primary" %> or <%= link_to "sign in", new_user_session_path, class: "btn btn-small btn-primary" %>
   		<% end %>
+  		<ul>
 		</div>
-	</div>
+	</header>
 
 <%= yield %>
 
