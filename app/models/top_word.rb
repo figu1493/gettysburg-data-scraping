@@ -2,12 +2,15 @@ require 'open-uri'
 require 'nokogiri'
 
 class TopWord < ActiveRecord::Base
-  attr_accessible :count, :word
+  attr_accessible :count, :word, :tampa_tid, :tampa_mid
 
   validates :word, uniqueness: true
+  validates :tampa_tid, length: { :in => 1..3 }
+  validates :tampa_mid, length: { :in => 1..12 }
+  validates :tampa_tid, format: { :with => /\d+/}
+  validates :tampa_mid, format: { :with => /\d+/}
 
   def self.raw_data
-
 		url = "http://rmc.library.cornell.edu/gettysburg/good_cause/transcript.htm"
 		doc = Nokogiri::HTML(open(url))
 
@@ -15,7 +18,6 @@ class TopWord < ActiveRecord::Base
 	end
 
   def self.four_score
-
 		url = "http://rmc.library.cornell.edu/gettysburg/good_cause/transcript.htm"
 		doc = Nokogiri::HTML(open(url))
 
